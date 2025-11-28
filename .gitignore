@@ -1,0 +1,13 @@
+
+# git
+.idea/
+.git/
+
+# python
+__pycache__/
+
+# venv
+venv/
+
+# .env
+.env

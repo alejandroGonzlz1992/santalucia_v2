@@ -1,0 +1,28 @@
+
+services:
+
+  santalucia:
+    build:
+      context: .
+      dockerfile: ./app/DockerFile
+    container_name: santalucia
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./app:/app/app:rw
+      - ./alembic:/app/alembic:rw
+      - ./alembic.ini:/app/alembic.ini:ro
+    env_file:
+      - ./.env
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+    restart: unless-stopped
+    networks:
+      - app_net
+
+networks:
+  app_net:
+    driver: bridge
+
+volumes:
+  postgres_data:
+    driver: local
