@@ -148,5 +148,59 @@ class EmployeeStatus(BASE):
     description = Column(String(450), nullable=False)
     created_at = Column(DateTime, server_default=func.now(), nullable=False)
     updated_at = Column(DateTime, server_default=func.now(), onupdate=func.now(), nullable=False)
+    # relationship
 
+    # __rep__
+    def __repr__(self):
+        return (f"<EmployeeStatus(id={self.id}, name={self.name}, description={self.description}, "
+                f"created_at={self.created_at}, updated_at={self.updated_at})>")
+
+
+class WorkShift(BASE):
+    __tablename__ = "workshift"
+    __table_args__ = {"schema": "cat"}
+    id = Column(Integer, Identity(start=900, increment=1, cycle=False), primary_key=True)
+    name = Column(String(75), nullable=False)
+    start = Column(Time, nullable=False)
+    end = Column(Time, nullable=False)
+    hours = Column(Integer, nullable=False, server_default="0")
+    created_at = Column(DateTime, server_default=func.now(), nullable=False)
+    updated_at = Column(DateTime, server_default=func.now(), onupdate=func.now(), nullable=False)
+    # relationship
+
+
+    # __rep__
+    def __repr__(self):
+        return (f"<WorkShift(id={self.id}, name={self.name}, start={self.start}, end={self.end}"
+                f"created_at={self.created_at}, updated_at={self.updated_at})>")
+
+
+class EvaluationType(BASE):
+    __tablename__ = "evaluationtype"
+    __table_args__ = {"schema": "cat"}
+    id = Column(Integer, Identity(start=10, increment=1, cycle=False), primary_key=True)
+    name = Column(String(75), nullable=False)
+    created_at = Column(DateTime, server_default=func.now(), nullable=False)
+    updated_at = Column(DateTime, server_default=func.now(), onupdate=func.now(), nullable=False)
+    # relationship
+
+    # __rep__
+    def __repr__(self):
+        return (f"<EvaluationType(id={self.id}, name={self.name}, created_at={self.created_at}, "
+                f"updated_at={self.updated_at})>")
+
+
+class EvaluationQuestion(BASE):
+    __tablename__ = "evaluationquestion"
+    __table_args__ = {"schema": "cat"}
+    id = Column(Integer, Identity(start=1000, increment=1, cycle=False), primary_key=True)
+    text = Column(String(550), nullable=False)
+    created_at = Column(DateTime, server_default=func.now(), nullable=False)
+    updated_at = Column(DateTime, server_default=func.now(), onupdate=func.now(), nullable=False)
+    # relationship
+
+    # __rep__
+    def __repr__(self):
+        return (f"<EvaluationQuestion(id={self.id}, text={self.text}, created_at={self.created_at}, "
+                f"updated_at={self.updated_at})>")
 
